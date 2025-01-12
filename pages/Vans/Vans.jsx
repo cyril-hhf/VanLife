@@ -1,16 +1,29 @@
 import React from "react"
 import { Link, useSearchParams } from "react-router-dom"
+import { getVans } from "../../api"
 
 export default function Vans() {
     const [searchParams, setSearchParams] = useSearchParams()
     const [vans, setVans] = React.useState([])
+    const [loading, setLoading] = React.useState(false)
+    const [error, setError] = React.useState(null)
 
     const typeFilter = searchParams.get("type")
 
     React.useEffect(() => {
-        fetch("/api/vans")
-            .then(res => res.json())
-            .then(data => setVans(data.vans))
+        async function loadVans() {
+            setLoading(true)
+            try {
+                const data = await getVans()
+                setVans(data)
+            } catch (err) {
+                setError(err)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        loadVans()
     }, [])
 
     const displayedVans = typeFilter
@@ -19,7 +32,13 @@ export default function Vans() {
 
     const vanElements = displayedVans.map(van => (
         <div key={van.id} className="van-tile">
-            <Link to={`/vans/${van.id}`}>
+            <Link
+                to={van.id}
+                state={{
+                    search: `?${searchParams.toString()}`,
+                    type: typeFilter
+                }}
+            >
                 <img src={van.imageUrl} />
                 <div className="van-info">
                     <h3>{van.name}</h3>
@@ -41,19 +60,13 @@ export default function Vans() {
         })
     }
 
-    /**
-     * Challenges:
-     * 1. Conditionally render the "Clear filter" button only if
-     *    there's a `type` filter currently applied in the search params
-     * 
-     * 2. On just the 3 filter buttons (not the Clear filter button),
-     *    conditionally render the className "selected" if the
-     *    typeFilter value equals the value that button sets it to.
-     *    (We don't have a variable for that, so it'll be a hard-coded
-     *    string).
-     * 
-     *    Hint: `...${typeFilter === "simple" ? ...}`
-     */
+    if (loading) {
+        return <h1>Loading...</h1>
+    }
+    
+    if (error) {
+        return <h1>There was an error: {error.message}</h1>
+    }
 
     return (
         <div className="van-list-container">
@@ -62,19 +75,22 @@ export default function Vans() {
                 <button
                     onClick={() => handleFilterChange("type", "simple")}
                     className={
-                        `van-type simple ${typeFilter === "simple" ? "selected" : ""}`
+                        `van-type simple 
+                        ${typeFilter === "simple" ? "selected" : ""}`
                     }
                 >Simple</button>
                 <button
                     onClick={() => handleFilterChange("type", "luxury")}
                     className={
-                        `van-type luxury ${typeFilter === "luxury" ? "selected" : ""}`
+                        `van-type luxury 
+                        ${typeFilter === "luxury" ? "selected" : ""}`
                     }
                 >Luxury</button>
                 <button
                     onClick={() => handleFilterChange("type", "rugged")}
                     className={
-                        `van-type rugged ${typeFilter === "rugged" ? "selected" : ""}`
+                        `van-type rugged 
+                        ${typeFilter === "rugged" ? "selected" : ""}`
                     }
                 >Rugged</button>
 
