@@ -840,3 +840,10 @@ img.graph {
         margin-left: 0;
     }
 }
+
+/* Responsive styles for VanDetail page */
+@media (max-width: 600px) {
+    .van-detail img {
+        width: 100%;
+    }
+}
