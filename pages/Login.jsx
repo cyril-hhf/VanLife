@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { loginUser } from "../api"
 
@@ -11,6 +11,12 @@ export default function Login() {
     const navigate = useNavigate()
 
     const from = location.state?.from || "/host";
+
+    useEffect(() => {
+        if (localStorage.getItem("loggedin")) {
+            navigate("/welcome", { replace: true })
+        }
+    }, [navigate])
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -64,6 +70,7 @@ export default function Login() {
                     placeholder="Password"
                     value={loginFormData.password}
                 />
+                <p><span id="credentials">email address: cyril@vanlife password: a123</span></p>
                 <button
                     disabled={status === "submitting"}
                 >

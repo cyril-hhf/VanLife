@@ -18,18 +18,12 @@ import NotFound from "./pages/NotFound"
 import Layout from "./components/Layout"
 import HostLayout from "./components/HostLayout"
 import AuthRequired from "./components/AuthRequired"
+import WelcomeUser from "./pages/WelcomeUser"
 
 import "./server"
 
 function App() {
-  /**
-   * Challenge: Create the AuthRequired Layout Route to protect
-   * all the /host routes.
-   * 
-   * For now, just use `const authenticated = false`
-   * to determine the authenticated status of the user, and
-   * either send them to the /login route, or render the Outlet
-   */
+
 
   return (
     <BrowserRouter>
@@ -43,6 +37,7 @@ function App() {
             path="login"
             element={<Login />}
           />
+          <Route path="welcome" element={<WelcomeUser />} />
 
           <Route element={<AuthRequired />}>
             <Route path="host" element={<HostLayout />}>

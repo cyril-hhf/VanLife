@@ -1,16 +1,19 @@
 import React from "react"
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, useNavigate } from "react-router-dom"
 import imageUrl from "/assets/images/avatar-icon.png"
 
 export default function Header() {
+    const isLoggedIn = localStorage.getItem("loggedin")
+    const navigate = useNavigate()
     const activeStyles = {
         fontWeight: "bold",
         textDecoration: "underline",
         color: "#161616"
     }
 
-    function fakeLogOut() {
+    function handleLogout() {
         localStorage.removeItem("loggedin")
+        navigate("/login", { replace: true })
     }
 
     return (
@@ -41,7 +44,11 @@ export default function Header() {
                         className="login-icon"
                     />
                 </Link>
-                <button onClick={fakeLogOut}>X</button>
+                {isLoggedIn && (
+                    <button onClick={handleLogout} className="logout-button">
+                        Log Out
+                    </button>
+                )}
             </nav>
         </header>
     )
