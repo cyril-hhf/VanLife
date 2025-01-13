@@ -6,6 +6,7 @@ html,
 body {
     margin: 0;
     padding: 0;
+    height: 100%;
     background-color: #fff7ed;
     font-family: "Inter", sans-serif;
 }
@@ -142,7 +143,7 @@ footer {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    min-height: 600px;
+    min-height: calc(100vh - 110px - 74px);
     color: white;
     padding: 45px 23px;
     display: flex;
@@ -827,7 +828,8 @@ img.graph {
 
     .hamburger-menu {
         display: block;
-        margin-right: 1rem
+        margin-right: 0.25rem;
+        margin-top: -10px;
     }
 
     .logout-button {
