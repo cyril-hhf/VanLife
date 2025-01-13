@@ -770,3 +770,62 @@ img.graph {
     color: #ff8c38;
     margin-right: 5px;
 }
+
+.hamburger-menu {
+    display: none;
+    position: relative;
+}
+
+.hamburger-icon {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.hamburger-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.hamburger-dropdown a,
+.hamburger-dropdown button {
+    padding: 1rem;
+    text-align: left;
+    text-decoration: none;
+    color: #161616;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.hamburger-dropdown a:hover,
+.hamburger-dropdown button:hover {
+    background-color: #f0f0f0;
+}
+
+.hamburger-dropdown .login-link {
+    display: flex;
+    align-items: center;
+}
+
+.hamburger-dropdown .login-icon {
+    margin-right: 0.5rem;
+}
+
+/* Show hamburger menu on small screens */
+@media (max-width: 600px) {
+    .desktop-nav {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+}

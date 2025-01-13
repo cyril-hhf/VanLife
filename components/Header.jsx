@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, NavLink, useNavigate } from "react-router-dom"
 import imageUrl from "/assets/images/avatar-icon.png"
+import HamburgerMenu from "./HamburgerMenu"
 
 export default function Header() {
     const isLoggedIn = localStorage.getItem("loggedin")
@@ -19,7 +20,7 @@ export default function Header() {
     return (
         <header>
             <Link className="site-logo" to="/">#VanLife</Link>
-            <nav>
+            <nav className="desktop-nav">
                 <NavLink
                     to="/host"
                     style={({ isActive }) => isActive ? activeStyles : null}
@@ -50,6 +51,7 @@ export default function Header() {
                     </button>
                 )}
             </nav>
+            <HamburgerMenu />
         </header>
     )
 }
