@@ -827,5 +827,10 @@ img.graph {
 
     .hamburger-menu {
         display: block;
+        margin-right: 1rem
+    }
+
+    .logout-button {
+        margin-left: 0;
     }
 }
