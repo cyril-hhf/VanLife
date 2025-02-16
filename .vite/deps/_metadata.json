@@ -1,0 +1,31 @@
+{
+  "hash": "3360d711",
+  "configHash": "306bf29d",
+  "lockfileHash": "442306ea",
+  "browserHash": "f559bcf2",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "6180f64c",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "080cedf1",
+      "needsInterop": false
+    },
+    "react-icons/bs": {
+      "src": "../../node_modules/react-icons/bs/index.esm.js",
+      "file": "react-icons_bs.js",
+      "fileHash": "1bd27354",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-PCS5YJKG": {
+      "file": "chunk-PCS5YJKG.js"
+    }
+  }
+}
